@@ -241,8 +241,7 @@
                                         <h3 class="h4 card-title mb-3">{{ $list->blog_name }}</h3>
                                         <p class="card-text text-muted">{{ $list->blog_shortdesc }}</p>
 
-                                        <a href="{{ url('/blog/' . $list->blog_slug) }}"
-                                            class="btn btn-link text-primary ps-0">
+                                        <a href="{{ url('/' . $list->blog_slug) }}" class="btn btn-link text-primary ps-0">
                                             Read More <i class="fas fa-arrow-right ms-2"></i>
                                         </a>
                                     </div>

@@ -134,9 +134,7 @@
 
 
             <div class="row">
-                <!-- Love Problem Solution -->
-
-                @foreach ($service as $list)
+                {{-- @foreach ($service as $list)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="service-card animate__animated animate__fadeInUp">
                             <div class="card-background"
@@ -152,9 +150,26 @@
                             </div>
                         </div>
                     </div>
+                @endforeach --}}
+                @foreach ($blog as $list)
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="service-card animate__animated animate__fadeInUp">
+                            <div class="card-background" style="background-image: url('{{ asset($list->blog_image) }}');">
+                            </div>
+                            <div class="service-content">
+                                <div class="service-icon">
+                                    <i class="{{ $list->blog_icon }}"></i>
+                                </div>
+                                <h3>{{ $list->blog_name }}</h3>
+                                <p>{{ $list->blog_shortdesc }}</p>
+
+                                <a href="{{ url('/' . $list->blog_slug) }}" class="btn btn-primary">Know More</a>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
-            <div class="row mt-5">
+            {{-- <div class="row mt-5">
                 <div class="col-12">
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
@@ -162,7 +177,7 @@
                         </ul>
                     </nav>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 

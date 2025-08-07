@@ -19,7 +19,8 @@ class PageController extends Controller
     {
         $service = Service::paginate(6);
         $service_name = Service::take(5)->get();
-        return view('service', compact('service', 'service_name'));
+        $blog = Blog::paginate(6);
+        return view('service', compact('service', 'service_name', 'blog'));
     }
 
     public function contactus()

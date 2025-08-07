@@ -182,7 +182,7 @@
 
 
                             <div class="form-group mb-3">
-                                <label for="blog_type" class="form-label">Keyword/ Tags</label>
+                                <label for="blog_type" class="form-label">Blog Type</label>
                                 <input id="blog_type" value="{{ $blog_type }}" name="blog_type" type="text"
                                     class="form-control" required>
                                 @error('blog_type')
@@ -190,6 +190,68 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group mb-3">
+                                <label for="keywords" class="form-label">Keywords</label>
+                                <input id="keywords" value="{{ $keywords }}" name="keywords" type="text"
+                                    class="form-control" required>
+                                @error('keywords')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="schema" class="form-label">Schema</label>
+                                <input id="schema" value="{{ $schema }}" name="schema" type="text"
+                                    class="form-control" required>
+                                @error('keywords')
+                                    <div class="text-danger">{{ $schema }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="geo_placename" class="form-label">Geo Placename</label>
+                                <input id="geo_placename" value="{{ $geo_placename }}" name="geo_placename" type="text"
+                                    class="form-control" required>
+                                @error('geo_placename')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="geo_position" class="form-label">Geo Position</label>
+                                <input id="geo_position" value="{{ $geo_position }}" name="geo_position" type="text"
+                                    class="form-control" required>
+                                @error('geo_position')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="geo_region" class="form-label">Geo Region</label>
+                                <input id="geo_region" value="{{ $geo_region }}" name="geo_region" type="text"
+                                    class="form-control" required>
+                                @error('geo_region')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="canonical" class="form-label">Canonical</label>
+                                <input id="canonical" value="{{ $canonical }}" name="canonical" type="text"
+                                    class="form-control" required>
+                                @error('canonical')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="icbm" class="form-label">ICBM</label>
+                                <input id="icbm" value="{{ $icbm }}" name="icbm" type="text"
+                                    class="form-control" required>
+                                @error('icbm')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <!-- New Category Dropdown Field -->
                             <div class="form-group mb-3">
                                 <label for="category_id" class="form-label">Category</label>

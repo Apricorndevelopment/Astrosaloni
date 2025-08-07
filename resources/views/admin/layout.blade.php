@@ -77,6 +77,13 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{ route('admin.faq') }}">
+                    <i class='bx bxs-message-dots bx-sm'></i>
+                    <span class="text">Faq</span>
+                </a>
+            </li>
+
         </ul>
         <ul class="side-menu bottom">
             <li>

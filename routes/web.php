@@ -4,12 +4,13 @@ use App\Models\Blog;
 use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     $service = Service::paginate(6);
@@ -57,7 +58,15 @@ Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog');
 Route::get('/admin/manage_blog/{id?}', [BlogController::class, 'manage_blog'])->name('blog.manage_blog');
 Route::post('/admin/manage_blog_process', [BlogController::class, 'manage_blog_process'])->name('blog.manage_blog_process');
 Route::get('/admin/blog/delete/{id}', [BlogController::class, 'delete'])->name('blog.delete');
-Route::get('/blog/{slug}', [BlogController::class, 'blog_details']);
+Route::get('/{slug}', [BlogController::class, 'blog_details']);
+
+
+// Faqs------------
+Route::get('/admin/faq', [FaqController::class, 'index'])->name('admin.faq');
+Route::get('/admin/manage_faq/{id?}', [FaqController::class, 'manage_faq'])->name('faq.manage_faq');
+Route::post('/admin/manage_faq_process', [FaqController::class, 'manage_faq_process'])->name('faq.manage_faq_process');
+Route::get('/admin/faq/delete/{id}', [FaqController::class, 'delete'])->name('faq.delete');
+
 
 
 // service------------

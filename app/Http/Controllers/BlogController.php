@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use App\Models\Blog;
 use App\Models\Service;
 use App\Models\Category;
@@ -35,6 +36,13 @@ class BlogController extends Controller
             $meta_title = $arr->meta_title;
             $meta_description = $arr->meta_description;
             $post_by = $arr->post_by;
+            $keywords = $arr->keywords;
+            $geo_placename = $arr->geo_placename;
+            $geo_position = $arr->geo_position;
+            $geo_region = $arr->geo_region;
+            $canonical = $arr->canonical;
+            $icbm = $arr->icbm;
+            $schema = $arr->schema;
         } else {
             $blog_name = '';
             $blog_slug = '';
@@ -46,6 +54,13 @@ class BlogController extends Controller
             $meta_title = '';
             $meta_description = '';
             $post_by = '';
+            $keywords = '';
+            $geo_placename = '';
+            $geo_position = '';
+            $geo_region = '';
+            $canonical = '';
+            $icbm = '';
+            $schema = '';
         }
 
         return view('admin/manage_blog', compact(
@@ -60,7 +75,18 @@ class BlogController extends Controller
             'meta_title',
             'meta_description',
             'id',
-            'categories' // Add this line
+            'categories',
+            'keywords',
+            'geo_placename',
+            'geo_position',
+            'geo_region',
+            'canonical',
+            'icbm',
+            'schema',
+
+
+
+
         ));
     }
 
@@ -105,6 +131,14 @@ class BlogController extends Controller
         $model->category_id = $request->post('category_id');
         $model->meta_title = $request->post('meta_title');
         $model->meta_description = $request->post('meta_description');
+        $model->keywords = $request->post('keywords');
+        $model->geo_placename = $request->post('geo_placename');
+        $model->geo_position = $request->post('geo_position');
+        $model->geo_region = $request->post('geo_region');
+        $model->canonical = $request->post('canonical');
+        $model->icbm = $request->post('icbm');
+        $model->schema = $request->post('schema');
+
 
         $model->save();
 
@@ -128,9 +162,10 @@ class BlogController extends Controller
     }
 
 
-    public function blog_details($slug)
+    public function blog_details($slugg)
     {
-        $blog = Blog::where('blog_slug', $slug)->firstOrFail();
+        $blog = Blog::where('blog_slug', $slugg)->firstOrFail();
+        $faqs = Faq::where('blog_id', $blog->id)->get();
         $recent_blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
         $related_blogs = Blog::where('blog_type', $blog->blog_type)
             ->where('id', '!=', $blog->id)
@@ -153,7 +188,16 @@ class BlogController extends Controller
             'meta_title' => $meta_title,
             'meta_description' => $meta_description,
             'page_title' => $page_title,
-            'service_name' => $service_name
+            'service_name' => $service_name,
+            'faqs' => $faqs,
+            'keywords' => $blog->keywords,
+            'geo_placename' => $blog->geo_placename,
+            'geo_position' => $blog->geo_position,
+            'geo_region' => $blog->geo_region,
+            'canonical' => $blog->canonical,
+            'icbm' => $blog->icbm,
+            'schema' => $blog->schema,
+
         ]);
     }
 }

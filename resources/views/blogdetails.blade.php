@@ -2,7 +2,13 @@
 @section('Page_title', $blog->blog_name)
 @section('meta_title', $meta_title ?? 'Welcome to Astro Saloni')
 @section('meta_description', $meta_description ?? 'Astro Saloni Services')
-
+@section('keywords', $keywords ?? '')
+@section('geo_placename', $geo_placename ?? '')
+@section('geo_position', $geo_position ?? '')
+@section('geo_region', $geo_region ?? '')
+@section('canonical', $canonical ?? '')
+@section('icbm', $icbm ?? '')
+@section('schema', $schema ?? '')
 @section('container')
 
     <style>
@@ -223,24 +229,7 @@
                             </div>
                         @endif
 
-                        <!-- Share Buttons -->
-                        <div class="share-buttons text-center">
-                            <h5 class="section-title">Share This Post</h5>
-                            <div class="d-flex justify-content-center flex-wrap">
-                                <a href="#" class="btn btn-outline-primary btn-sm rounded-pill me-2 mb-2">
-                                    <i class="fab fa-facebook-f me-1"></i> Facebook
-                                </a>
-                                <a href="#" class="btn btn-outline-info btn-sm rounded-pill me-2 mb-2">
-                                    <i class="fab fa-twitter me-1"></i> Twitter
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm rounded-pill me-2 mb-2">
-                                    <i class="fab fa-linkedin-in me-1"></i> LinkedIn
-                                </a>
-                                <a href="#" class="btn btn-outline-success btn-sm rounded-pill me-2 mb-2">
-                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
-                                </a>
-                            </div>
-                        </div>
+
 
                         <!-- Related Posts -->
                         @if (isset($related_blogs) && $related_blogs->count() > 0)
@@ -410,4 +399,95 @@
             }
         }
     </style>
+
+    <!-- FAQ Section -->
+    <section class="faq-section py-5" id="faq" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our services</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                    @if ($faqs->count() > 0)
+                        <div class="accordion" id="faqAccordion">
+                            @foreach ($faqs as $index => $faq)
+                                <div class="accordion-item mb-3 border-0 shadow-sm">
+                                    <h3 class="accordion-header" id="heading{{ $index }}">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}"
+                                            aria-expanded="false" aria-controls="collapse{{ $index }}">
+                                            {{ $faq->question }}
+                                        </button>
+                                    </h3>
+                                    <div id="collapse{{ $index }}" class="accordion-collapse collapse"
+                                        aria-labelledby="heading{{ $index }}" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            {{ $faq->answer }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p>No FAQs available for this blog.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add this CSS for the FAQ section -->
+    <style>
+        .faq-section {
+            background-color: #f8f9fa;
+        }
+
+        .accordion-button {
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            background-color: white;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: var(--primary-color);
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(212, 175, 55, 0.25);
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+            background-color: white;
+        }
+
+        .accordion-item {
+            border-radius: 8px !important;
+            overflow: hidden;
+        }
+    </style>
+
+    <!-- Share Buttons -->
+    <div class="share-buttons text-center">
+        <h5 class="section-title">Share This Post</h5>
+        <div class="d-flex justify-content-center flex-wrap">
+            <a href="#" class="btn btn-outline-primary btn-sm rounded-pill me-2 mb-2">
+                <i class="fab fa-facebook-f me-1"></i> Facebook
+            </a>
+            <a href="#" class="btn btn-outline-info btn-sm rounded-pill me-2 mb-2">
+                <i class="fab fa-twitter me-1"></i> Twitter
+            </a>
+            <a href="#" class="btn btn-outline-secondary btn-sm rounded-pill me-2 mb-2">
+                <i class="fab fa-linkedin-in me-1"></i> LinkedIn
+            </a>
+            <a href="#" class="btn btn-outline-success btn-sm rounded-pill me-2 mb-2">
+                <i class="fab fa-whatsapp me-1"></i> WhatsApp
+            </a>
+        </div>
+    </div>
 @endsection

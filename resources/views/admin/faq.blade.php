@@ -169,9 +169,9 @@
 
         <!-- Header Section -->
         <div class="page-header">
-            <h1 class="page-title">Blog</h1>
-            <a href="{{ route('blog.manage_blog') }}" class="add-new-btn">
-                + Add New Blog
+            <h1 class="page-title">Faq</h1>
+            <a href="{{ route('faq.manage_faq') }}" class="add-new-btn">
+                + Add Faq
             </a>
         </div>
 
@@ -183,33 +183,27 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Blog Title</th>
-                    <th>Blog Slug</th>
-                    <th>Blog Image</th>
+                    <th>Qestion</th>
+                    <th>Answer</th>
                     <th>Action</th>
                 </tr>
             </thead>
 
-            <tbody id="blogTableBody">
+            <tbody id="faqTableBody">
                 @forelse ($data as $list)
                     <tr>
                         <td>{{ $list['id'] }}</td> <!-- Changed from -> to [] -->
-                        <td>{{ $list['blog_name'] }}</td>
-                        <td>{{ $list['blog_slug'] }}</td>
+                        <td>{{ $list['question'] }}</td>
+                        <td>{{ $list['answer'] }}</td>
                         <td>
-                            @if (!empty($list['blog_image']))
-                                <img src="{{ asset($list['blog_image']) }}" class="blog-image">
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ url('admin/manage_blog/' . $list['id']) }}" class="action-btn edit-btn">Edit</a>
-                            <a href="{{ url('admin/blog/delete/' . $list['id']) }}"
-                                onclick="return confirm('Are you sure?')" class="action-btn delete-btn">Delete</a>
+                            <a href="{{ url('admin/manage_faq/' . $list['id']) }}" class="action-btn edit-btn">Edit</a>
+                            <a href="{{ url('admin/faq/delete/' . $list['id']) }}" onclick="return confirm('Are you sure?')"
+                                class="action-btn delete-btn">Delete</a>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="empty-state">No Blogs found.</td>
+                        <td colspan="5" class="empty-state">No Faqs found.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -222,7 +216,7 @@
         // Search Function
         $('#searchInput').on('keyup', function() {
             var value = $(this).val().toLowerCase();
-            $('#blogTableBody tr').filter(function() {
+            $('#faqTableBody tr').filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
             });
         });
